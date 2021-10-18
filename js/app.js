@@ -20,8 +20,6 @@ let dCard2 = document.getElementById('d-card2')
 let mainMsg = document.getElementById('main-msg')
 let displayPValue = document.getElementById('p-card-value')
 let displayDValue = document.getElementById('d-card-value')
-let altPValue = document.getElementById('p-alt-value')
-let altDValue = document.getElementById('d-alt-value')
 let playerHand = document.getElementById('player-hand')
 let dealerHand = document.getElementById('dealer-hand')
 
@@ -56,8 +54,6 @@ function init() {
   dCard1.className = "card large"
   dCard2.className = "card large"
   displayDValue.innerText = '(?)'
-  altPValue.innerText = '()'
-  altDValue.innerText = '()'
   firstDeal()
 }
 
@@ -72,20 +68,9 @@ function firstDeal() {
   console.log('player', pHandValue) 
   console.log('dealer', dHandValue)
 }
-// deal function chooses a random card
-// from the deck, removes it from the
+// deal functions choose a random card
+// from the deck, remove it from the
 // deck, and adds it to a player's hand
-// function deal(hand) {
-//   let randIdx = Math.floor(Math.random() * deck.length)
-//   let cardPicked = deck.splice(randIdx, 1)
-//   hand.push(cardPicked)
-  // if(hand === 'pHand') {
-  //   pRender(cardPicked)
-  // } else if(hand === 'dHand') {
-  //   dRender(cardPicked)
-  // }
-// }
-
 function pDeal() {
   let randIdx = Math.floor(Math.random() * deck.length)
   let cardPicked = deck.splice(randIdx, 1)
@@ -116,8 +101,9 @@ function hit() {
     if(pHandValue > 21) {
       renderLose()
     }
+  }
 }
-}
+
 // stand function checks the dealer's hand,
 // then hits if dealer has 16 or less.
 // If the dealer has 17 or more, the round
@@ -142,8 +128,6 @@ function stand() {
   }
 }
 }
-
-
 
 function getHandValueP() {
   let cardId = pHand[pHand.length -1].toString()
@@ -187,7 +171,6 @@ function checkAceP() {
     acesP = 1
     return 11
   }
-  // altPValue.innerText = `(${pHandValue - 10})`   
 }
 
 function checkAceD() {
@@ -268,7 +251,7 @@ Then the player is able to again choose between 'hit' or 'stand'
 The two ways for the round to end are if the total value goes over 21, or the player chooses stand
 
 If the player chooses stay, then the dealer plays out the hand
-The dealer automatically hits with 16 or less, otherwise they stay
+The dealer automatically hits with 16 or less, otherwise they stand
 
 After either the player goes over 21 or the dealer finishes the hand, a win/lose message is displayed
 The player is able to exit or play another hand.
