@@ -8,6 +8,8 @@ let pHand = []
 let dHand = []
 let pHandValue = 0
 let dHandValue = 0
+let acesP = 0
+let acesD = 0
 
 /*--------------------- Cached Element References -*/
 
@@ -41,6 +43,8 @@ function init() {
   dHand = []
   pHandValue = 0
   dHandValue = 0
+  acesP = 0
+  acesD = 0
   while(dealerHand.lastChild.id !== 'd-card2'){
     dealerHand.removeChild(dealerHand.lastChild)
   }
@@ -88,7 +92,6 @@ function pDeal() {
   pHand.push(cardPicked)
   pHandValue += getHandValueP()
   displayPValue.innerText = pHandValue
-  checkAceP()
   return cardPicked
 }
 
@@ -97,7 +100,6 @@ function dDeal() {
   let cardPicked = deck.splice(randIdx, 1)
   dHand.push(cardPicked)
   dHandValue += getHandValueD()
-  
   return cardPicked
 }
 
@@ -108,7 +110,8 @@ function hit() {
     let newDiv = document.createElement('div')
     playerHand.appendChild(newDiv)
     newDiv.className = "card large"
-    newDiv.classList.add(pDeal())    
+    newDiv.classList.add(pDeal())
+    checkBustP()    
     console.log('player', pHandValue) 
     if(pHandValue > 21) {
       renderLose()
@@ -127,6 +130,7 @@ function stand() {
     dealerHand.appendChild(newDiv)
     newDiv.className = "card large"
     newDiv.classList.add(dDeal())
+    checkBustD()
     console.log('dealer', dHandValue)
   } 
   dCard2.classList.remove('back-blue')
@@ -149,11 +153,10 @@ function getHandValueP() {
   lastDigit === 'J' ||
   lastDigit === '0') {
     return 10
-    // for now, Ace is 11. this will be updated
   } else if(lastDigit === 'A') {
-      return checkAceP()
+    return checkAceP()
   } else {
-      return parseInt(lastDigit)
+    return parseInt(lastDigit)
   }
 }
 
@@ -165,11 +168,10 @@ function getHandValueD() {
   lastDigit === 'J' ||
   lastDigit === '0') {
     return 10
-    // for now, Ace is 11. this will be updated
   } else if(lastDigit === 'A') {
-      return checkAceD()
+    return checkAceD()
   } else {
-      return parseInt(lastDigit)
+    return parseInt(lastDigit)
   }
 }
 
@@ -182,6 +184,7 @@ function checkAceP() {
   if(pHandValue + 11 > 21) {
     return 1
   } else {
+    acesP = 1
     return 11
   }
   // altPValue.innerText = `(${pHandValue - 10})`   
@@ -191,8 +194,25 @@ function checkAceD() {
   if(dHandValue + 11 > 21) {
     return 1
   } else {
+    acesD = 1
     return 11
   } 
+}
+
+function checkBustP() {
+  if(pHandValue > 21) {
+    pHandValue -= (10 * acesP)
+    displayPValue.innerText = pHandValue
+    acesP = 0
+  }
+}
+
+function checkBustD() {
+  if(dHandValue > 21) {
+    dHandValue -= (10 * acesD)
+    displayDValue.innerText = dHandValue
+    acesD = 0
+  }
 }
 
 function compareHands() {
