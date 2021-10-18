@@ -11,9 +11,13 @@ let dHandValue = 0
 
 /*--------------------- Cached Element References -*/
 
-let pHandEl = document.getElementById('p-hand')
-let dHandEl = document.getElementById('d-hand')
+let pCard1 = document.getElementById('p-card1')
+let pCard2 = document.getElementById('p-card2')
+let dCard1 = document.getElementById('d-card1')
+let dCard2 = document.getElementById('d-card2')
 let mainMsg = document.getElementById('main-msg')
+let displayPValue = document.getElementById('p-card-value')
+let displayDValue = document.getElementById('d-card-value')
 
 /*--------------------- Event Listeners -----------*/
 
@@ -30,59 +34,86 @@ function init() {
   dHand = []
   pHandValue = 0
   dHandValue = 0
-  deal(pHand)
-  pHandValue += getHandValue(pHand)
-  deal(dHand)
-  dHandValue += getHandValue(dHand)
-  deal(pHand)
-  pHandValue += getHandValue(pHand)
-  deal(dHand)
-  dHandValue += getHandValue(dHand)
-  console.log(pHand)
-  console.log(dHand)
-  console.log(pHandValue) 
-  console.log(dHandValue)
+  pCard1.className = "card large"
+  pCard2.className = "card large"
+  dCard1.className = "card large"
+  dCard2.className = "card large"
+  firstDeal()
 }
 
+function firstDeal() {
+  pCard1.classList.add(pDeal())
+  dCard1.classList.add(dDeal())
+  pCard2.classList.add(pDeal())
+  dCard2.classList.add(dDeal())
+  dCard2.classList.add('back-blue')
+  console.log(pHand)
+  console.log(dHand)
+  console.log('player', pHandValue) 
+  console.log('dealer', dHandValue)
+  console.log(pCard1.classList)
+}
 // deal function chooses a random card
 // from the deck, removes it from the
 // deck, and adds it to a player's hand
-function deal(hand) {
+// function deal(hand) {
+//   let randIdx = Math.floor(Math.random() * deck.length)
+//   let cardPicked = deck.splice(randIdx, 1)
+//   hand.push(cardPicked)
+  // if(hand === 'pHand') {
+  //   pRender(cardPicked)
+  // } else if(hand === 'dHand') {
+  //   dRender(cardPicked)
+  // }
+// }
+
+function pDeal() {
   let randIdx = Math.floor(Math.random() * deck.length)
   let cardPicked = deck.splice(randIdx, 1)
-  hand.push(cardPicked)
-  if(hand === 'pHand') {
-    pRender(cardPicked)
-  } else if(hand === 'dHand') {
-    dRender(cardPicked)
-  }
+  pHand.push(cardPicked)
+  pHandValue += getHandValue(pHand)
+  displayPValue.innerText = pHandValue
+  return cardPicked
+}
+
+function dDeal() {
+  let randIdx = Math.floor(Math.random() * deck.length)
+  let cardPicked = deck.splice(randIdx, 1)
+  dHand.push(cardPicked)
+  dHandValue += getHandValue(dHand)
+  displayDValue.innerText = dHandValue
+  return cardPicked
 }
 
 // hit function adds a card to the player's hand
 function hit() {
-  deal(pHand)
-  pHandValue += getHandValue(pHand)
-  console.log(pHandValue) 
-  if(pHandValue > 21) {
-    renderLose()
-  }
+  if(mainMsg.innerText === "Welcome to Blackjack"
+      && pHandValue > 0){
+    pDeal()
+    console.log('player', pHandValue) 
+    if(pHandValue > 21) {
+      renderLose()
+    }
 }
-
+}
 // stand function checks the dealer's hand,
 // then hits if dealer has 16 or less.
 // If the dealer has 17 or more, the round
 // ends and the two hands are compared.
 function stand() {
+  if(mainMsg.innerText === "Welcome to Blackjack"
+      && dHandValue > 0){
   while(dHandValue <= 16) {
-    deal(dHand)
-    dHandValue += getHandValue(dHand)
-    console.log(dHandValue)
+    dDeal()
+    console.log('dealer', dHandValue)
   } 
+  dCard2.classList.remove('back-blue')
   if(dHandValue > 21) {
     renderWin()
   } else {
     compareHands()
   }
+}
 }
 
 function compareHands() {
@@ -97,8 +128,10 @@ function compareHands() {
 
 
 function pRender(card) {
-  pHandEl.classList.remove('outline')
-  pHandEl.classList.add(card)
+  // console.log(pHandEl.classList)
+  // pHandEl.classList.remove('outline')
+  // pHandEl.classList.add(card)
+  // console.log(pHandEl.classList)
 }
 
 function dRender() {
@@ -114,7 +147,7 @@ function renderLose() {
 }
 
 function renderPush() {
-  mainMsg.innerText = "Push"
+  mainMsg.innerText = "Pushed"
 }
 
 function getHandValue(hand) {
