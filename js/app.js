@@ -18,6 +18,10 @@ let dCard2 = document.getElementById('d-card2')
 let mainMsg = document.getElementById('main-msg')
 let displayPValue = document.getElementById('p-card-value')
 let displayDValue = document.getElementById('d-card-value')
+let altPValue = document.getElementById('p-alt-value')
+let altDValue = document.getElementById('d-alt-value')
+let playerHand = document.getElementById('player-hand')
+let dealerHand = document.getElementById('dealer-hand')
 
 /*--------------------- Event Listeners -----------*/
 
@@ -29,15 +33,27 @@ document.getElementById('stand').addEventListener('click', stand)
 
 
 function init() {
+  if(deck.length < 20) {
+    deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+  }
   mainMsg.innerText = "Welcome to Blackjack"
   pHand = []
   dHand = []
   pHandValue = 0
   dHandValue = 0
+  while(dealerHand.lastChild.id !== 'd-card2'){
+    dealerHand.removeChild(dealerHand.lastChild)
+  }
+  while(playerHand.lastChild.id !== 'p-card2'){
+    playerHand.removeChild(playerHand.lastChild)
+  }
   pCard1.className = "card large"
   pCard2.className = "card large"
   dCard1.className = "card large"
   dCard2.className = "card large"
+  displayDValue.innerText = '(?)'
+  altPValue.innerText = '()'
+  altDValue.innerText = '()'
   firstDeal()
 }
 
@@ -51,7 +67,6 @@ function firstDeal() {
   console.log(dHand)
   console.log('player', pHandValue) 
   console.log('dealer', dHandValue)
-  console.log(pCard1.classList)
 }
 // deal function chooses a random card
 // from the deck, removes it from the
@@ -71,8 +86,9 @@ function pDeal() {
   let randIdx = Math.floor(Math.random() * deck.length)
   let cardPicked = deck.splice(randIdx, 1)
   pHand.push(cardPicked)
-  pHandValue += getHandValue(pHand)
+  pHandValue += getHandValueP()
   displayPValue.innerText = pHandValue
+  checkAceP()
   return cardPicked
 }
 
@@ -80,8 +96,8 @@ function dDeal() {
   let randIdx = Math.floor(Math.random() * deck.length)
   let cardPicked = deck.splice(randIdx, 1)
   dHand.push(cardPicked)
-  dHandValue += getHandValue(dHand)
-  displayDValue.innerText = dHandValue
+  dHandValue += getHandValueD()
+  
   return cardPicked
 }
 
@@ -89,7 +105,10 @@ function dDeal() {
 function hit() {
   if(mainMsg.innerText === "Welcome to Blackjack"
       && pHandValue > 0){
-    pDeal()
+    let newDiv = document.createElement('div')
+    playerHand.appendChild(newDiv)
+    newDiv.className = "card large"
+    newDiv.classList.add(pDeal())    
     console.log('player', pHandValue) 
     if(pHandValue > 21) {
       renderLose()
@@ -104,16 +123,76 @@ function stand() {
   if(mainMsg.innerText === "Welcome to Blackjack"
       && dHandValue > 0){
   while(dHandValue <= 16) {
-    dDeal()
+    let newDiv = document.createElement('div')
+    dealerHand.appendChild(newDiv)
+    newDiv.className = "card large"
+    newDiv.classList.add(dDeal())
     console.log('dealer', dHandValue)
   } 
   dCard2.classList.remove('back-blue')
+  displayDValue.innerText = dHandValue
   if(dHandValue > 21) {
     renderWin()
   } else {
     compareHands()
   }
 }
+}
+
+
+
+function getHandValueP() {
+  let cardId = pHand[pHand.length -1].toString()
+  let lastDigit = cardId.slice(-1)
+  if(lastDigit === 'K' ||
+  lastDigit === 'Q' ||
+  lastDigit === 'J' ||
+  lastDigit === '0') {
+    return 10
+    // for now, Ace is 11. this will be updated
+  } else if(lastDigit === 'A') {
+      return checkAceP()
+  } else {
+      return parseInt(lastDigit)
+  }
+}
+
+function getHandValueD() {
+  let cardId = dHand[dHand.length -1].toString()
+  let lastDigit = cardId.slice(-1)
+  if(lastDigit === 'K' ||
+  lastDigit === 'Q' ||
+  lastDigit === 'J' ||
+  lastDigit === '0') {
+    return 10
+    // for now, Ace is 11. this will be updated
+  } else if(lastDigit === 'A') {
+      return checkAceD()
+  } else {
+      return parseInt(lastDigit)
+  }
+}
+
+// function checks to see if the player
+// has an ace. If they do, then the 
+// alt score with ace=1 is displayed
+
+// calculate total score each time the function is run
+function checkAceP() {
+  if(pHandValue + 11 > 21) {
+    return 1
+  } else {
+    return 11
+  }
+  // altPValue.innerText = `(${pHandValue - 10})`   
+}
+
+function checkAceD() {
+  if(dHandValue + 11 > 21) {
+    return 1
+  } else {
+    return 11
+  } 
 }
 
 function compareHands() {
@@ -149,23 +228,6 @@ function renderLose() {
 function renderPush() {
   mainMsg.innerText = "Pushed"
 }
-
-function getHandValue(hand) {
-  let cardId = hand[hand.length -1].toString()
-  let lastDigit = cardId.slice(-1)
-  if(lastDigit === 'K' ||
-  lastDigit === 'Q' ||
-  lastDigit === 'J' ||
-  lastDigit === '0') {
-    return 10
-    // for now, Ace is 11. this will be updated
-  } else if(lastDigit === 'A') {
-    return 11
-  } else {
-    return parseInt(lastDigit)
-  }
-}
-
 
 /* Pseudocode
 
