@@ -13,9 +13,9 @@ This is a single-player game, where the user plays against the dealer.
 (dealer win)
 
 ## Technologies Used ##
-Javascript
-HTML
-CSS
+* Javascript
+* HTML
+* CSS
 
 ## Next steps ##
 Improve style with fonts, colors, animations, sounds, etc.
