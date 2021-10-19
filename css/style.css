@@ -19,18 +19,24 @@ body {
 }
 
 #deal {
+  grid-column: 1/4;
+  grid-row: 2/3;
+  margin-left: 30px;
+  margin-top: 40px;
   width: 100px;
   height: 50px;
 }
 
 #dealer-hand {
-  grid-column: 2/4;
+  grid-column: 1/4;
   grid-row: 1/2;
+  margin-left: 30px;
 }
 
 #player-hand {
-  grid-column: 2/4;
+  grid-column: 1/4;
   grid-row: 3/4;
+  margin-left: 30px;
 }
 
 #deck {
@@ -39,12 +45,13 @@ body {
   text-align: center;
 }
 
-#choices {
-  grid-column: 3/4;
+.choices {
+  grid-column: 2/3;
   grid-row: 3/4;
-  display: block;
+  margin-top: 10px;
 }
 
 #hit, #stand {
-  display: block;
+  width: 80px;
+  height: 40px;
 }
