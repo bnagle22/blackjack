@@ -63,6 +63,7 @@ function firstDeal() {
   pCard2.classList.add(pDeal())
   dCard2.classList.add(dDeal())
   dCard2.classList.add('back-blue')
+  checkBlackjack()
   console.log(pHand)
   console.log(dHand)
   console.log('player', pHandValue) 
@@ -208,16 +209,16 @@ function compareHands() {
   }
 }
 
-
-function pRender(card) {
-  // console.log(pHandEl.classList)
-  // pHandEl.classList.remove('outline')
-  // pHandEl.classList.add(card)
-  // console.log(pHandEl.classList)
-}
-
-function dRender() {
-
+function checkBlackjack() {
+  if(pHandValue === 21 && dHandValue === 21) {
+    mainMsg.innerText = "Double blackjack! Pushed."
+  }
+  else if(dHandValue === 21) {
+    mainMsg.innerText = "Blackjack! Dealer wins."
+  }
+  else if(pHandValue === 21) {
+    mainMsg.innerText = "Blackjack! You win!"
+  }
 }
 
 function renderWin() {
