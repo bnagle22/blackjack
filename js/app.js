@@ -10,6 +10,9 @@ let pHandValue = 0
 let dHandValue = 0
 let acesP = 0
 let acesD = 0
+let pScore = 0
+let dScore = 0
+let pushCount = 0
 
 /*--------------------- Cached Element References -*/
 
@@ -22,6 +25,9 @@ let displayPValue = document.getElementById('p-card-value')
 let displayDValue = document.getElementById('d-card-value')
 let playerHand = document.getElementById('player-hand')
 let dealerHand = document.getElementById('dealer-hand')
+let pWins = document.getElementById('p-wins')
+let dWins = document.getElementById('d-wins')
+let pushes = document.getElementById('pushes')
 
 /*--------------------- Event Listeners -----------*/
 
@@ -212,25 +218,37 @@ function compareHands() {
 function checkBlackjack() {
   if(pHandValue === 21 && dHandValue === 21) {
     mainMsg.innerText = "Double blackjack! Pushed."
+    pushCount ++
+    pushes.innerText = `Pushes: ${pushCount}`
   }
   else if(dHandValue === 21) {
     mainMsg.innerText = "Blackjack! Dealer wins."
+    dScore ++
+    dWins.innerText = `Dealer Wins: ${dScore}`
   }
   else if(pHandValue === 21) {
     mainMsg.innerText = "Blackjack! You win!"
+    pScore ++
+    pWins.innerText = `Player Wins: ${pScore}`
   }
 }
 
 function renderWin() {
   mainMsg.innerText = "You win!"
+  pScore ++
+  pWins.innerText = `Player Wins: ${pScore}`
 }
 
 function renderLose() {
   mainMsg.innerText = "Dealer wins."
+  dScore ++
+  dWins.innerText = `Dealer Wins: ${dScore}`
 }
 
 function renderPush() {
   mainMsg.innerText = "Pushed"
+  pushCount ++
+  pushes.innerText = `Pushes: ${pushCount}`
 }
 
 /* Pseudocode

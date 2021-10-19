@@ -12,6 +12,12 @@ body {
   margin: 10px;
 }
 
+.scoreboard {
+  grid-column: 3/4;
+  grid-row: 1/2;
+  display: block;
+}
+
 #deal {
   width: 100px;
   height: 50px;
