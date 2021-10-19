@@ -1,21 +1,21 @@
-Leopard Gecko Blackjack
+# Leopard Gecko Blackjack #
 
 Welcome to the game of blackjack with a leopard gecko theme.
 
 
-Getting Started
+## Getting Started ##
 (link)
 This is a single-player game, where the user plays against the dealer.
 
-Screenshots
+## Screenshots ##
 (main screen)
 (player win)
 (dealer win)
 
-Technologies Used
+## Technologies Used ##
 Javascript
 HTML
 CSS
 
-Next steps
+## Next steps ##
 Improve style with fonts, colors, animations, sounds, etc.
