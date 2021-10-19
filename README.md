@@ -4,7 +4,7 @@ Welcome to the game of blackjack with a leopard gecko theme.
 
 
 ## Getting Started ##
-[link](https://gecko-blackjack.netlify.app/)
+https://gecko-blackjack.netlify.app/
 This is a single-player game, where the user plays against the dealer.
 
 ## Screenshots ##
