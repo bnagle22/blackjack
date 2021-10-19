@@ -126,7 +126,7 @@ function stand() {
     checkBustD()
     console.log('dealer', dHandValue)
   } 
-  dCard2.classList.remove('back-blue')
+  dCard2.classList.remove('back')
   displayDValue.innerText = dHandValue
   if(dHandValue > 21) {
     renderWin()

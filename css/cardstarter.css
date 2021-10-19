@@ -49,17 +49,17 @@
 .card.diamonds.K,
 .card.dK,
 .card.♦K {
-  background-image: url("../images/diamonds/diamonds-K.svg"); }
+  background-image: url("../images/diamonds/diamonds-K.jpg"); }
 
 .card.diamonds.Q,
 .card.dQ,
 .card.♦Q {
-  background-image: url("../images/diamonds/diamonds-Q.svg"); }
+  background-image: url("../images/diamonds/diamonds-Q.jpg"); }
 
 .card.diamonds.J,
 .card.dJ,
 .card.♦J {
-  background-image: url("../images/diamonds/diamonds-J.svg"); }
+  background-image: url("../images/diamonds/diamonds-J.jpg"); }
 
 .card.diamonds.r10,
 .card.d10,
@@ -114,17 +114,17 @@
 .card.hearts.K,
 .card.hK,
 .card.♥K {
-  background-image: url("../images/hearts/hearts-K.svg"); }
+  background-image: url("../images/hearts/hearts-K.jpg"); }
 
 .card.hearts.Q,
 .card.hQ,
 .card.♥Q {
-  background-image: url("../images/hearts/hearts-Q.svg"); }
+  background-image: url("../images/hearts/hearts-Q.jpg"); }
 
 .card.hearts.J,
 .card.hJ,
 .card.♥J {
-  background-image: url("../images/hearts/hearts-J.svg"); }
+  background-image: url("../images/hearts/hearts-J.jpg"); }
 
 .card.hearts.r10,
 .card.h10,
@@ -179,17 +179,17 @@
 .card.spades.K,
 .card.sK,
 .card.♠K {
-  background-image: url("../images/spades/spades-K.svg"); }
+  background-image: url("../images/spades/spades-K.jpg"); }
 
 .card.spades.Q,
 .card.sQ,
 .card.♠Q {
-  background-image: url("../images/spades/spades-Q.svg"); }
+  background-image: url("../images/spades/spades-Q.jpg"); }
 
 .card.spades.J,
 .card.sJ,
 .card.♠J {
-  background-image: url("../images/spades/spades-J.svg"); }
+  background-image: url("../images/spades/spades-J.jpg"); }
 
 .card.spades.r10,
 .card.s10,
@@ -244,17 +244,17 @@
 .card.clubs.K,
 .card.cK,
 .card.♣K {
-  background-image: url("../images/clubs/clubs-K.svg"); }
+  background-image: url("../images/clubs/clubs-K.jpg"); }
 
 .card.clubs.Q,
 .card.cQ,
 .card.♣Q {
-  background-image: url("../images/clubs/clubs-Q.svg"); }
+  background-image: url("../images/clubs/clubs-Q.jpg"); }
 
 .card.clubs.J,
 .card.cJ,
 .card.♣J {
-  background-image: url("../images/clubs/clubs-J.svg"); }
+  background-image: url("../images/clubs/clubs-J.jpg"); }
 
 .card.clubs.r10,
 .card.c10,
