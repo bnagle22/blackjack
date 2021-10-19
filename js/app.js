@@ -68,7 +68,7 @@ function firstDeal() {
   dCard1.classList.add(dDeal())
   pCard2.classList.add(pDeal())
   dCard2.classList.add(dDeal())
-  dCard2.classList.add('back-blue')
+  dCard2.classList.add('back')
   checkBlackjack()
   console.log(pHand)
   console.log(dHand)
