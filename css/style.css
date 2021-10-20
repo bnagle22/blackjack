@@ -1,8 +1,8 @@
 body {
   display: grid;
   min-height: 100vh;
-  grid-template-columns: 20% 40% 40%;
-  grid-template-rows: 30% 15% 30%;
+  grid-template-columns: 20% 45% 20% 15%;
+  grid-template-rows: 38% 20% 42%;
 }
 
 .msg-box {
@@ -14,9 +14,11 @@ body {
 }
 
 .scoreboard {
-  grid-column: 3/4;
-  grid-row: 1/2;
+  grid-column: 4/5;
+  grid-row: 3/4;
   display: block;
+  text-align: left;
+  margin: 15px 35px;
 }
 
 #main-msg {
@@ -33,7 +35,7 @@ body {
   grid-column: 1/4;
   grid-row: 2/3;
   margin-left: 30px;
-  margin-top: 40px;
+  margin-top: 70px;
   width: 100px;
   height: 50px;
 }
@@ -52,8 +54,8 @@ body {
 
 #deck {
   grid-column: 3/4;
-  grid-row: 2/3;
-  text-align: center;
+  grid-row: 3/4;
+  margin: 20px 30px;
 }
 
 .choices {

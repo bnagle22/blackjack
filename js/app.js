@@ -224,25 +224,25 @@ function checkBlackjack() {
   else if(dHandValue === 21) {
     mainMsg.innerText = "Blackjack! Dealer wins."
     dScore ++
-    dWins.innerText = `Dealer Wins: ${dScore}`
+    dWins.innerText = `Gecko: ${dScore}`
   }
   else if(pHandValue === 21) {
     mainMsg.innerText = "Blackjack! You win!"
     pScore ++
-    pWins.innerText = `Player Wins: ${pScore}`
+    pWins.innerText = `Player: ${pScore}`
   }
 }
 
 function renderWin() {
   mainMsg.innerText = "You win!"
   pScore ++
-  pWins.innerText = `Player Wins: ${pScore}`
+  pWins.innerText = `Player: ${pScore}`
 }
 
 function renderLose() {
   mainMsg.innerText = "Dealer wins."
   dScore ++
-  dWins.innerText = `Dealer Wins: ${dScore}`
+  dWins.innerText = `Gecko: ${dScore}`
 }
 
 function renderPush() {
