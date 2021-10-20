@@ -42,7 +42,7 @@ function init() {
   if(deck.length < 20) {
     deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
   }
-  mainMsg.innerText = "Welcome to Blackjack"
+  mainMsg.innerText = "Welcome to Gecko Blackjack!"
   pHand = []
   dHand = []
   pHandValue = 0
@@ -97,7 +97,7 @@ function dDeal() {
 
 // hit function adds a card to the player's hand
 function hit() {
-  if(mainMsg.innerText === "Welcome to Blackjack"
+  if(mainMsg.innerText === "Welcome to Gecko Blackjack!"
       && pHandValue > 0){
     let newDiv = document.createElement('div')
     playerHand.appendChild(newDiv)
@@ -116,7 +116,7 @@ function hit() {
 // If the dealer has 17 or more, the round
 // ends and the two hands are compared.
 function stand() {
-  if(mainMsg.innerText === "Welcome to Blackjack"
+  if(mainMsg.innerText === "Welcome to Gecko Blackjack!"
       && dHandValue > 0){
   while(dHandValue <= 16) {
     let newDiv = document.createElement('div')

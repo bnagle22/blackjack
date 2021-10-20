@@ -4,10 +4,13 @@ body {
   grid-template-columns: 250px 350px 240px 200px;
   grid-template-rows: 280px 130px 200px;
   background-image: url("../images/sand2.jpg");
+  font-family: 'Vollkorn', serif;
+  font-weight: bold;
 }
 
 .msg-box {
-  border: 2px solid black;
+  border: 4px solid black;
+  border-radius: 10px;
   grid-column: 2/3;
   grid-row: 2/3;
   margin: 25px 25px 0 0;
@@ -30,10 +33,10 @@ body {
 .scoreboard {
   grid-column: 3/4;
   grid-row: 3/4;
-  display: block;
   text-align: left;
-  margin-top: 15px;
+  margin-top: 0px;
   margin-left: 75px;
+  font-size: 22px;
 }
 
 #d-card-value {
@@ -67,6 +70,12 @@ body {
   margin-top: 40px;
   width: 150px;
   height: 50px;
+  font-family: 'Vollkorn', serif;
+  font-size: 18px;
+  border-radius: 20px;
+  border-width: 4px;
+  border-color: black;
+  background-color: white;
 }
 
 #dealer-hand {
@@ -94,7 +103,28 @@ body {
   margin-top: 10px;
 }
 
-#hit, #stand {
+#hit {
   width: 80px;
   height: 40px;
+  font-family: 'Vollkorn', serif;
+  font-size: 18px;
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: black;
+  margin: 5px;
+  background-color: rgb(208, 21, 21);
+  color: white;
+}
+
+#stand {
+  width: 80px;
+  height: 40px;
+  font-family: 'Vollkorn', serif;
+  font-size: 18px;
+  border-radius: 10px;
+  border-width: 2px;
+  border-color: black;
+  margin: 5px;
+  background-color: rgb(52, 52, 191);
+  color: white;
 }
