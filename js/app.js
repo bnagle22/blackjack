@@ -28,50 +28,70 @@ const dealerHand = document.getElementById('dealer-hand')
 const pWins = document.getElementById('p-wins')
 const dWins = document.getElementById('d-wins')
 const pushes = document.getElementById('pushes')
+const dealBtn = document.getElementById('deal')
+const hitBtn = document.getElementById('hit')
+const standBtn = document.getElementById('stand')
 
 /*--------------------- Event Listeners -----------*/
 
-document.getElementById('deal').addEventListener('click', init)
-document.getElementById('hit').addEventListener('click', hit)
-document.getElementById('stand').addEventListener('click', stand)
-
+dealBtn.addEventListener('click', init)
+hitBtn.addEventListener('click', hit)
+standBtn.addEventListener('click', stand)
+dealBtn.addEventListener('mouseover', function(evt) {
+  evt.target.style.backgroundColor = "black"
+  evt.target.style.color = "white"
+})
+hitBtn.addEventListener('mouseover', function(evt) {
+  evt.target.style.backgroundColor = "black"
+})
+standBtn.addEventListener('mouseover', function(evt) {
+  evt.target.style.backgroundColor = "black"
+})
+dealBtn.addEventListener('mouseout', function(evt) {
+  evt.target.style.backgroundColor = ""
+  evt.target.style.color = ""
+})
+hitBtn.addEventListener('mouseout', function(evt) {
+  evt.target.style.backgroundColor = ""
+})
+standBtn.addEventListener('mouseout', function(evt) {
+  evt.target.style.backgroundColor = ""
+})
 /*--------------------- Functions -----------------*/
 
 
 function init() {
-  if(deck.length < 20) {
-    deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+  if(mainMsg.innerText !== "Choose Hit or Stand") {
+    if(deck.length < 20) {
+      deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+    }
+    mainMsg.innerText = "Choose Hit or Stand"
+    pHand = []
+    dHand = []
+    pHandValue = 0
+    dHandValue = 0
+    acesP = 0
+    acesD = 0
+    while(dealerHand.lastChild.id !== 'd-card2'){
+      dealerHand.removeChild(dealerHand.lastChild)
+    }
+    while(playerHand.lastChild.id !== 'p-card2'){
+      playerHand.removeChild(playerHand.lastChild)
+    }
+    firstDeal()
   }
-  mainMsg.innerText = "Welcome to Gecko Blackjack!"
-  pHand = []
-  dHand = []
-  pHandValue = 0
-  dHandValue = 0
-  acesP = 0
-  acesD = 0
-  while(dealerHand.lastChild.id !== 'd-card2'){
-    dealerHand.removeChild(dealerHand.lastChild)
-  }
-  while(playerHand.lastChild.id !== 'p-card2'){
-    playerHand.removeChild(playerHand.lastChild)
-  }
+}
+
+function firstDeal() {
   pCard1.className = "card large move"
   pCard2.className = "card large new move"
   dCard1.className = "card large move"
   dCard2.className = "card large new move"
   displayDValue.innerText = '(?)'
-  firstDeal()
-}
-
-function firstDeal() {
   pCard1.classList.add(pDeal())
   dCard1.classList.add(dDeal())
   pCard2.classList.add(pDeal())
   dCard2.classList.add(dDeal())
-  pCard1.classList.add("move")
-  dCard1.classList.add("move")
-  pCard2.classList.add("move")
-  dCard2.classList.add("move")
   dCard2.classList.add('back')
   checkBlackjack()
   console.log(pHand)
@@ -101,7 +121,7 @@ function dDeal() {
 
 // hit function adds a card to the player's hand
 function hit() {
-  if(mainMsg.innerText === "Welcome to Gecko Blackjack!"
+  if(mainMsg.innerText === "Choose Hit or Stand"
       && pHandValue > 0){
     let newDiv = document.createElement('div')
     playerHand.appendChild(newDiv)
@@ -120,7 +140,7 @@ function hit() {
 // If the dealer has 17 or more, the round
 // ends and the two hands are compared.
 function stand() {
-  if(mainMsg.innerText === "Welcome to Gecko Blackjack!"
+  if(mainMsg.innerText === "Choose Hit or Stand"
       && dHandValue > 0){
   while(dHandValue <= 16) {
     let newDiv = document.createElement('div')

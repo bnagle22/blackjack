@@ -68,6 +68,11 @@ body {
   animation-duration: .8s;
 }
 
+.remove {
+  animation: backOutLeft;
+  animation-duration: .8s;
+}
+
 #deal {
   grid-column: 1/4;
   grid-row: 2/3;
