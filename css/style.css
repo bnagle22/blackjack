@@ -1,17 +1,17 @@
 body {
   display: grid;
   min-height: 100vh;
-  grid-template-columns: 280px 320px 240px 200px;
+  grid-template-columns: 250px 350px 240px 200px;
   grid-template-rows: 280px 130px 200px;
-  background-color: rgb(230, 192, 145);
+  background-image: url("../images/sand2.jpg");
 }
 
 .msg-box {
   border: 2px solid black;
   grid-column: 2/3;
   grid-row: 2/3;
-  margin: 25px 0 0 0;
-  width: 450px;
+  margin: 25px 25px 0 0;
+  width: 550px;
   height: 80px;
 }
 
@@ -85,7 +85,7 @@ body {
   grid-column: 3/4;
   grid-row: 1/2;
   margin-top: 0px;
-  margin-left: 8px;
+  margin-left: 28px;
 }
 
 .choices {
