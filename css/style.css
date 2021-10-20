@@ -63,6 +63,11 @@ body {
   margin-left: -83px;
 }
 
+.move {
+  animation: backInLeft;
+  animation-duration: .8s;
+}
+
 #deal {
   grid-column: 1/4;
   grid-row: 2/3;

@@ -10,6 +10,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Crete+Round&family=Vollkorn:wght@500&display=swap" rel="stylesheet">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
   <script defer src="js/app.js"></script>
 </head>
 <body>
@@ -17,10 +21,12 @@
     <div id="main-msg">Welcome to Gecko Blackjack!</div>
   </div>
   <div class="log"></div>
-  <button id="deal">Deal Next Hand</button>
+  <div>
+    <button id="deal">Deal Next Hand</button>
+  </div>
   <div id="dealer-hand">
     <h3>Gecko</h3>
-    <div id="d-card1" class="card large"></div>
+    <div id="d-card1" class=""></div>
     <div id="d-card2" class=""></div>
   </div>
   <p id="d-card-value">(?)</p>
@@ -28,7 +34,7 @@
   <div id="player-hand">
     <h3>Player</h3>
     <div id="cards-p">
-      <div id="p-card1" class="card large"></div>
+      <div id="p-card1" class=""></div>
       <div id="p-card2" class=""></div>
     </div>
   </div>

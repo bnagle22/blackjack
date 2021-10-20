@@ -55,10 +55,10 @@ function init() {
   while(playerHand.lastChild.id !== 'p-card2'){
     playerHand.removeChild(playerHand.lastChild)
   }
-  pCard1.className = "card large"
-  pCard2.className = "card large new"
-  dCard1.className = "card large"
-  dCard2.className = "card large new"
+  pCard1.className = "card large move"
+  pCard2.className = "card large new move"
+  dCard1.className = "card large move"
+  dCard2.className = "card large new move"
   displayDValue.innerText = '(?)'
   firstDeal()
 }
@@ -68,6 +68,10 @@ function firstDeal() {
   dCard1.classList.add(dDeal())
   pCard2.classList.add(pDeal())
   dCard2.classList.add(dDeal())
+  pCard1.classList.add("move")
+  dCard1.classList.add("move")
+  pCard2.classList.add("move")
+  dCard2.classList.add("move")
   dCard2.classList.add('back')
   checkBlackjack()
   console.log(pHand)
@@ -101,7 +105,7 @@ function hit() {
       && pHandValue > 0){
     let newDiv = document.createElement('div')
     playerHand.appendChild(newDiv)
-    newDiv.className = "card large new"
+    newDiv.className = "card large new move"
     newDiv.classList.add(pDeal())
     checkBustP()    
     console.log('player', pHandValue) 
@@ -121,7 +125,7 @@ function stand() {
   while(dHandValue <= 16) {
     let newDiv = document.createElement('div')
     dealerHand.appendChild(newDiv)
-    newDiv.className = "card large new"
+    newDiv.className = "card large new move"
     newDiv.classList.add(dDeal())
     checkBustD()
     console.log('dealer', dHandValue)
