@@ -1,5 +1,6 @@
 /*--------------------- Constants -----------------*/
 
+
 /*--------------------- Variables -----------------*/
 
 let deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
@@ -78,7 +79,9 @@ function init() {
     while(playerHand.lastChild.id !== 'p-card2'){
       playerHand.removeChild(playerHand.lastChild)
     }
+    pCard1.classList.remove(...pCard1.classList)
     firstDeal()
+    // setTimeout(() => {firstDeal()}, 3000)
   }
 }
 
@@ -107,7 +110,7 @@ function pDeal() {
   let cardPicked = deck.splice(randIdx, 1)
   pHand.push(cardPicked)
   pHandValue += getHandValueP()
-  displayPValue.innerText = pHandValue
+  setTimeout(() => {displayPValue.innerText = pHandValue}, 1500)
   return cardPicked
 }
 
@@ -130,7 +133,7 @@ function hit() {
     checkBustP()    
     console.log('player', pHandValue) 
     if(pHandValue > 21) {
-      renderLose()
+      setTimeout(() => {renderLose()}, 2000)
     }
   }
 }
@@ -151,9 +154,9 @@ function stand() {
     console.log('dealer', dHandValue)
   } 
   dCard2.classList.remove('back')
-  displayDValue.innerText = dHandValue
+  setTimeout(() => {displayDValue.innerText = dHandValue}, 1500)
   if(dHandValue > 21) {
-    renderWin()
+    setTimeout(() => {renderWin()}, 2000)
   } else {
     compareHands()
   }
@@ -216,7 +219,7 @@ function checkAceD() {
 function checkBustP() {
   if(pHandValue > 21) {
     pHandValue -= (10 * acesP)
-    displayPValue.innerText = pHandValue
+    setTimeout(() => {displayPValue.innerText = pHandValue}, 1500)
     acesP = 0
   }
 }
@@ -224,18 +227,18 @@ function checkBustP() {
 function checkBustD() {
   if(dHandValue > 21) {
     dHandValue -= (10 * acesD)
-    displayDValue.innerText = dHandValue
+    setTimeout(() => {displayDValue.innerText = dHandValue}, 1500)
     acesD = 0
   }
 }
 
 function compareHands() {
   if(pHandValue > dHandValue) {
-    renderWin()
+    setTimeout(() => {renderWin()}, 2000)
   } else if(dHandValue > pHandValue) {
-    renderLose()
+    setTimeout(() => {renderLose()}, 2000)
   } else {
-    renderPush()
+    setTimeout(() => {renderPush()}, 2000)
   }
 }
 
@@ -274,6 +277,8 @@ function renderPush() {
   pushCount ++
   pushes.innerText = `Pushes: ${pushCount}`
 }
+
+
 
 /* Pseudocode
 
