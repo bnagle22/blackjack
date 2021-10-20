@@ -25,6 +25,10 @@ body {
   text-align: center;
 }
 
+.new {
+  margin-left: -83px;
+}
+
 #deal {
   grid-column: 1/4;
   grid-row: 2/3;

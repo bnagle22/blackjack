@@ -23,7 +23,7 @@ let dCard2 = document.getElementById('d-card2')
 let mainMsg = document.getElementById('main-msg')
 let displayPValue = document.getElementById('p-card-value')
 let displayDValue = document.getElementById('d-card-value')
-let playerHand = document.getElementById('player-hand')
+let playerHand = document.getElementById('cards-p')
 let dealerHand = document.getElementById('dealer-hand')
 let pWins = document.getElementById('p-wins')
 let dWins = document.getElementById('d-wins')
@@ -56,9 +56,9 @@ function init() {
     playerHand.removeChild(playerHand.lastChild)
   }
   pCard1.className = "card large"
-  pCard2.className = "card large"
+  pCard2.className = "card large new"
   dCard1.className = "card large"
-  dCard2.className = "card large"
+  dCard2.className = "card large new"
   displayDValue.innerText = '(?)'
   firstDeal()
 }
@@ -101,7 +101,7 @@ function hit() {
       && pHandValue > 0){
     let newDiv = document.createElement('div')
     playerHand.appendChild(newDiv)
-    newDiv.className = "card large"
+    newDiv.className = "card large new"
     newDiv.classList.add(pDeal())
     checkBustP()    
     console.log('player', pHandValue) 
@@ -121,7 +121,7 @@ function stand() {
   while(dHandValue <= 16) {
     let newDiv = document.createElement('div')
     dealerHand.appendChild(newDiv)
-    newDiv.className = "card large"
+    newDiv.className = "card large new"
     newDiv.classList.add(dDeal())
     checkBustD()
     console.log('dealer', dHandValue)
