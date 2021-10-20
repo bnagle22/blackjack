@@ -16,18 +16,18 @@ let pushCount = 0
 
 /*--------------------- Cached Element References -*/
 
-let pCard1 = document.getElementById('p-card1')
-let pCard2 = document.getElementById('p-card2')
-let dCard1 = document.getElementById('d-card1')
-let dCard2 = document.getElementById('d-card2')
-let mainMsg = document.getElementById('main-msg')
-let displayPValue = document.getElementById('p-card-value')
-let displayDValue = document.getElementById('d-card-value')
-let playerHand = document.getElementById('cards-p')
-let dealerHand = document.getElementById('dealer-hand')
-let pWins = document.getElementById('p-wins')
-let dWins = document.getElementById('d-wins')
-let pushes = document.getElementById('pushes')
+const pCard1 = document.getElementById('p-card1')
+const pCard2 = document.getElementById('p-card2')
+const dCard1 = document.getElementById('d-card1')
+const dCard2 = document.getElementById('d-card2')
+const mainMsg = document.getElementById('main-msg')
+const displayPValue = document.getElementById('p-card-value')
+const displayDValue = document.getElementById('d-card-value')
+const playerHand = document.getElementById('cards-p')
+const dealerHand = document.getElementById('dealer-hand')
+const pWins = document.getElementById('p-wins')
+const dWins = document.getElementById('d-wins')
+const pushes = document.getElementById('pushes')
 
 /*--------------------- Event Listeners -----------*/
 

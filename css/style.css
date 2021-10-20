@@ -1,37 +1,53 @@
 body {
   display: grid;
   min-height: 100vh;
-  grid-template-columns: 20% 45% 20% 15%;
-  grid-template-rows: 32% 20% 48%;
+  grid-template-columns: 280px 320px 240px 200px;
+  grid-template-rows: 280px 130px 200px;
+  background-color: rgb(230, 192, 145);
 }
 
 .msg-box {
   border: 2px solid black;
   grid-column: 2/3;
   grid-row: 2/3;
-  margin: 10px;
+  margin: 25px 0 0 0;
   width: 450px;
+  height: 80px;
 }
 
 .log {
-  grid-column: 3/4;
+  grid-column: 4/6;
   grid-row: 1/2;
   border: 2px solid black;
   margin-top: -8px;
   margin-right: -10px;
   content: url("../images/logPic.jpg");
   object-fit: cover;
-  width: 500px;
+  width: 600px;
   height: 450px; 
 }
 
 .scoreboard {
-  grid-column: 4/5;
+  grid-column: 3/4;
   grid-row: 3/4;
   display: block;
   text-align: left;
-  margin-top: 0px;
-  margin-left: 5px;
+  margin-top: 15px;
+  margin-left: 75px;
+}
+
+#d-card-value {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  margin: 18px 0 0 130px;
+  font-size: 20px;
+}
+
+#p-card-value {
+  grid-column: 1/2;
+  grid-row: 3/4;
+  margin: 15px 0 0 130px;
+  font-size: 20px;
 }
 
 #main-msg {
@@ -47,9 +63,9 @@ body {
 #deal {
   grid-column: 1/4;
   grid-row: 2/3;
-  margin-left: 30px;
-  margin-top: 70px;
-  width: 100px;
+  margin-left: 50px;
+  margin-top: 40px;
+  width: 150px;
   height: 50px;
 }
 
@@ -67,7 +83,7 @@ body {
 
 #deck {
   grid-column: 3/4;
-  grid-row: 3/4;
+  grid-row: 1/2;
   margin-top: 0px;
   margin-left: 8px;
 }
