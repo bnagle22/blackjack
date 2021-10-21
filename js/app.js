@@ -5,6 +5,7 @@
 
 let deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
+
 let pHand = []
 let dHand = []
 let pHandValue = 0
@@ -39,14 +40,13 @@ dealBtn.addEventListener('click', init)
 hitBtn.addEventListener('click', hit)
 standBtn.addEventListener('click', stand)
 dealBtn.addEventListener('mouseover', function(evt) {
-  evt.target.style.backgroundColor = "black"
-  evt.target.style.color = "white"
+  evt.target.style.backgroundColor = "rgb(254, 254, 217)"
 })
 hitBtn.addEventListener('mouseover', function(evt) {
-  evt.target.style.backgroundColor = "black"
+  evt.target.style.backgroundColor = "rgb(154, 18, 18)"
 })
 standBtn.addEventListener('mouseover', function(evt) {
-  evt.target.style.backgroundColor = "black"
+  evt.target.style.backgroundColor = "rgb(30, 30, 109)"
 })
 dealBtn.addEventListener('mouseout', function(evt) {
   evt.target.style.backgroundColor = ""
@@ -63,40 +63,55 @@ standBtn.addEventListener('mouseout', function(evt) {
 
 function init() {
   if(mainMsg.innerText !== "Choose Hit or Stand") {
-    if(deck.length < 20) {
-      deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
-    }
-    mainMsg.innerText = "Choose Hit or Stand"
-    pHand = []
-    dHand = []
-    pHandValue = 0
-    dHandValue = 0
-    acesP = 0
-    acesD = 0
-    while(dealerHand.lastChild.id !== 'd-card2'){
-      dealerHand.removeChild(dealerHand.lastChild)
-    }
-    while(playerHand.lastChild.id !== 'p-card2'){
-      playerHand.removeChild(playerHand.lastChild)
-    }
-    pCard1.classList.remove(...pCard1.classList)
+    removeCards()
+    reset()
     firstDeal()
-    // setTimeout(() => {firstDeal()}, 3000)
   }
 }
 
-function firstDeal() {
-  pCard1.className = "card large move"
-  pCard2.className = "card large new move"
-  dCard1.className = "card large move"
-  dCard2.className = "card large new move"
+function reset() {
+  if(deck.length < 20) {
+    deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+  }
+  setTimeout(() => {mainMsg.innerText = "Choose Hit or Stand"}, 4000)
+  
+  pHand = []
+  dHand = []
+  pHandValue = 0
+  dHandValue = 0
+  acesP = 0
+  acesD = 0
+  displayPValue.innerText = '(?)'
   displayDValue.innerText = '(?)'
-  pCard1.classList.add(pDeal())
-  dCard1.classList.add(dDeal())
-  pCard2.classList.add(pDeal())
-  dCard2.classList.add(dDeal())
-  dCard2.classList.add('back')
-  checkBlackjack()
+  while(dealerHand.lastChild.id !== 'd-card2'){
+    dealerHand.removeChild(dealerHand.lastChild)
+  }
+  while(playerHand.lastChild.id !== 'p-card2'){
+    playerHand.removeChild(playerHand.lastChild)
+  }
+  pCard1.classList.remove(...pCard1.classList)
+  console.log(pCard1.classList)
+  
+}
+
+function removeCards() {
+  pCard1.className = ""
+  pCard2.className = ""
+  dCard1.className = ""
+  dCard2.className = ""
+}
+
+function firstDeal() {
+  setTimeout(() => {pCard1.className = "card large move"}, 1000)
+  setTimeout(() => {dCard1.className = "card large move"}, 1500)
+  setTimeout(() => {pCard2.className = "card large new move"}, 2500)
+  setTimeout(() => {dCard2.className = "card large new move"}, 3500)
+  setTimeout(() => {pCard1.classList.add(pDeal())}, 1000)
+  setTimeout(() => {dCard1.classList.add(dDeal())}, 1500)
+  setTimeout(() => {pCard2.classList.add(pDeal())}, 2500)
+  setTimeout(() => {dCard2.classList.add(dDeal())}, 3500)
+  setTimeout(() => {dCard2.classList.add('back')}, 3500)
+  setTimeout(() => {checkBlackjack()}, 3500)
   console.log(pHand)
   console.log(dHand)
   console.log('player', pHandValue) 
@@ -110,7 +125,7 @@ function pDeal() {
   let cardPicked = deck.splice(randIdx, 1)
   pHand.push(cardPicked)
   pHandValue += getHandValueP()
-  setTimeout(() => {displayPValue.innerText = pHandValue}, 1500)
+  setTimeout(() => {displayPValue.innerText = pHandValue}, 2000)
   return cardPicked
 }
 
@@ -244,17 +259,20 @@ function compareHands() {
 
 function checkBlackjack() {
   if(pHandValue === 21 && dHandValue === 21) {
-    mainMsg.innerText = "Double blackjack! Pushed."
+    setTimeout(() => {mainMsg.innerText = "Double blackjack! Pushed."}, 1000)
+    
     pushCount ++
     pushes.innerText = `Pushes: ${pushCount}`
   }
   else if(dHandValue === 21) {
-    mainMsg.innerText = "Blackjack! Dealer wins."
+    setTimeout(() => {mainMsg.innerText = "Blackjack! Dealer wins."}, 1000)
+    
     dScore ++
     dWins.innerText = `Gecko: ${dScore}`
   }
   else if(pHandValue === 21) {
-    mainMsg.innerText = "Blackjack! You win!"
+    setTimeout(() => {mainMsg.innerText = "Blackjack! You win!"}, 1000)
+    
     pScore ++
     pWins.innerText = `Player: ${pScore}`
   }

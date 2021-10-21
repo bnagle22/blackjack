@@ -1,7 +1,7 @@
 body {
   display: grid;
   min-height: 100vh;
-  grid-template-columns: 250px 350px 240px 200px;
+  grid-template-columns: 250px 350px 240px 180px;
   grid-template-rows: 280px 130px 200px;
   background-image: url("../images/sand2.jpg");
   font-family: 'Vollkorn', serif;
@@ -18,17 +18,18 @@ body {
   height: 80px;
 }
 
-.log {
-  grid-column: 4/6;
-  grid-row: 1/2;
-  border: 2px solid black;
-  margin-top: -8px;
-  margin-right: -10px;
-  content: url("../images/logPic.jpg");
-  object-fit: cover;
-  width: 600px;
-  height: 450px; 
-}
+  .log {
+    grid-column: 5/6;
+    grid-row: 1/2;
+    border: 0px solid black;
+    margin-top: -8px;
+    margin-right: 0px;
+    content: url("../images/geckoBowtie.png");
+    object-fit: contain;
+    width: 500px;
+    height: 450px; 
+  }
+
 
 .scoreboard {
   grid-column: 3/4;
@@ -65,7 +66,7 @@ body {
 
 .move {
   animation: backInLeft;
-  animation-duration: .8s;
+  animation-duration: 1s;
 }
 
 .remove {
@@ -85,7 +86,7 @@ body {
   border-radius: 20px;
   border-width: 4px;
   border-color: black;
-  background-color: white;
+  background-color: rgb(255, 255, 255);
 }
 
 #dealer-hand {
