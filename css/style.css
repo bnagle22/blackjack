@@ -16,7 +16,6 @@ body {
   font-family: 'Vollkorn', serif;
   font-weight: bold;
   --box-color: 4px solid black;
-  --btn-color: 4px solid white;
   --btn-content: "Dark Mode";
   --background-btn: black;
   --text-btn: white;
@@ -27,7 +26,6 @@ body.dark {
   color: rgb(255, 255, 255);
   border: white;
   --box-color: 4px solid rgb(255, 255, 255);
-  --btn-color: 2px solid white;
   --btn-content: "Light Mode";
   --background-btn: white;
   --text-btn: black;
@@ -169,7 +167,7 @@ body.dark {
   width: 80px;
   margin-left: 280px;
   border-radius: 20px;
-  border: var(--btn-color);
+  border: black;
   background-color: var(--background-btn);
   color: var(--text-btn);
 }

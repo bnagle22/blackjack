@@ -1,11 +1,6 @@
-/*--------------------- Constants -----------------*/
-
-
 /*--------------------- Variables -----------------*/
 
 let deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
-
-
 let pHand = []
 let dHand = []
 let pHandValue = 0
@@ -42,7 +37,7 @@ dealBtn.addEventListener('click', init)
 hitBtn.addEventListener('click', hit)
 standBtn.addEventListener('click', stand)
 dealBtn.addEventListener('mouseover', function(evt) {
-  evt.target.style.backgroundColor = "rgb(222, 223, 208)"
+  evt.target.style.backgroundColor = "rgba(255, 255, 255, 0.82)"
 })
 hitBtn.addEventListener('mouseover', function(evt) {
   evt.target.style.backgroundColor = "rgb(154, 18, 18)"
@@ -61,9 +56,12 @@ standBtn.addEventListener('mouseout', function(evt) {
   evt.target.style.backgroundColor = ""
 })
 lightDark.addEventListener('click', toggleLightDark)
+
 /*--------------------- Functions -----------------*/
 
-
+// initialize function first checks that a hand is not
+// in progress. Then it calls three functions to
+// start the next hand
 function init() {
   if(mainMsg.innerText !== "Choose Hit or Stand") {
     removeCards()
@@ -72,12 +70,24 @@ function init() {
   }
 }
 
+// this function makes the cards from a previous
+// hand disappear from the screen
+function removeCards() {
+  pCard1.className = ""
+  pCard2.className = ""
+  dCard1.className = ""
+  dCard2.className = ""
+}
+
+// reset function first 'shuffles' a new deck together
+// when there are less than 20 cards remaining.
+// it sets each hand and score to 0, removes additional
+// cards, and changes the main message on the screen.
 function reset() {
   if(deck.length < 20) {
     deck = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
   }
   setTimeout(() => {mainMsg.innerText = "Choose Hit or Stand"}, 4000)
-  
   pHand = []
   dHand = []
   pHandValue = 0
@@ -92,18 +102,12 @@ function reset() {
   while(playerHand.lastChild.id !== 'p-card2'){
     playerHand.removeChild(playerHand.lastChild)
   }
-  pCard1.classList.remove(...pCard1.classList)
-  console.log(pCard1.classList)
-  
 }
 
-function removeCards() {
-  pCard1.className = ""
-  pCard2.className = ""
-  dCard1.className = ""
-  dCard2.className = ""
-}
 
+// this function deals two cards each to the player
+// and dealer. It calls another function to see
+// if either of the initial hands is a blackjack
 function firstDeal() {
   setTimeout(() => {pCard1.className = "card large move"}, 1000)
   setTimeout(() => {dCard1.className = "card large move"}, 1500)
@@ -115,11 +119,8 @@ function firstDeal() {
   setTimeout(() => {dCard2.classList.add(dDeal())}, 3500)
   setTimeout(() => {dCard2.classList.add('back')}, 3500)
   setTimeout(() => {checkBlackjack()}, 3500)
-  console.log(pHand)
-  console.log(dHand)
-  console.log('player', pHandValue) 
-  console.log('dealer', dHandValue)
 }
+
 // deal functions choose a random card
 // from the deck, remove it from the
 // deck, and adds it to a player's hand
@@ -140,7 +141,12 @@ function dDeal() {
   return cardPicked
 }
 
-// hit function adds a card to the player's hand
+// hit function first checks to make sure that 
+// a hand is currently being played. It adds a 
+// card to the player's hand, then calls another
+// function, checkBustP, to handle aces.
+// if the hand value goes over 21, a lose function
+// is called
 function hit() {
   if(mainMsg.innerText === "Choose Hit or Stand"
       && pHandValue > 0){
@@ -149,7 +155,6 @@ function hit() {
     newDiv.className = "card large new move"
     newDiv.classList.add(pDeal())
     checkBustP()    
-    console.log('player', pHandValue) 
     if(pHandValue > 21) {
       setTimeout(() => {renderLose()}, 2000)
     }
@@ -163,13 +168,14 @@ function hit() {
 function stand() {
   if(mainMsg.innerText === "Choose Hit or Stand"
       && dHandValue > 0){
+  // the dealer continues to hit as long as
+  // the hand value is 16 or less
   while(dHandValue <= 16) {
     let newDiv = document.createElement('div')
     dealerHand.appendChild(newDiv)
     newDiv.className = "card large new move"
     newDiv.classList.add(dDeal())
     checkBustD()
-    console.log('dealer', dHandValue)
   } 
   dCard2.classList.remove('back')
   setTimeout(() => {displayDValue.innerText = dHandValue}, 1500)
@@ -181,6 +187,11 @@ function stand() {
 }
 }
 
+// the getHandValue functions check the card
+// most recently added to a hand, and translates
+// the name of the card to a point value. If an
+// ace is encountered, then a checkAce function
+// is called
 function getHandValueP() {
   let cardId = pHand[pHand.length -1].toString()
   let lastDigit = cardId.slice(-1)
@@ -211,11 +222,12 @@ function getHandValueD() {
   }
 }
 
-// function checks to see if the player
-// has an ace. If they do, then the 
-// alt score with ace=1 is displayed
-
-// calculate total score each time the function is run
+// the checkAce functions first check
+// to see if adding 11 to the hand would
+// bring the total over 21. If it would,
+// the value of the ace is 1. If not, the
+// value of the ace is 11 and the ace
+// counter variable is set to 1
 function checkAceP() {
   if(pHandValue + 11 > 21) {
     return 1
@@ -234,11 +246,16 @@ function checkAceD() {
   } 
 }
 
+// this function uses the ace counter variable
+// to see if having an ace with a value
+// of 11 would cause a bust. If it would, then
+// the ace value is effectively set to 1 by 
+// subtracting 10 from the hand total
 function checkBustP() {
   if(pHandValue > 21) {
-    pHandValue -= (10 * acesP)
+    pHandValue -= (10 * acesP) // if the player has an ace, 10 is subtracted from the total. otherwise, nothing is subtracted
     setTimeout(() => {displayPValue.innerText = pHandValue}, 1500)
-    acesP = 0
+    acesP = 0   //the ace counter is set to 0 so this can only happen once per hand.
   }
 }
 
@@ -250,6 +267,9 @@ function checkBustD() {
   }
 }
 
+// this function evaluates the winner of
+// the hand and calls another function
+// to set the winner
 function compareHands() {
   if(pHandValue > dHandValue) {
     setTimeout(() => {renderWin()}, 2000)
@@ -260,27 +280,31 @@ function compareHands() {
   }
 }
 
+// the checkBlackjack function is called when
+// the first cards of the hand are dealt, to
+// make sure that when a blackjack is dealt
+// the hand will end
 function checkBlackjack() {
   if(pHandValue === 21 && dHandValue === 21) {
     setTimeout(() => {mainMsg.innerText = "Double blackjack! Pushed."}, 1000)
-    
     pushCount ++
     pushes.innerText = `Pushes: ${pushCount}`
   }
   else if(dHandValue === 21) {
     setTimeout(() => {mainMsg.innerText = "Blackjack! Dealer wins."}, 1000)
-    
     dScore ++
     dWins.innerText = `Gecko: ${dScore}`
   }
   else if(pHandValue === 21) {
     setTimeout(() => {mainMsg.innerText = "Blackjack! You win!"}, 1000)
-    
     pScore ++
     pWins.innerText = `Player: ${pScore}`
   }
 }
 
+// the win, lose, and push functions
+// display the winner and add a point
+// to the score of the winner
 function renderWin() {
   mainMsg.innerText = "You win!"
   pScore ++
@@ -299,6 +323,8 @@ function renderPush() {
   pushes.innerText = `Pushes: ${pushCount}`
 }
 
+// toggle function changes the body to dark
+// when the dark mode btn is clicked
 function toggleLightDark() {
   body.className = body.className === "dark" ? "" : "dark"
 }

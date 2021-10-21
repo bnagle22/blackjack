@@ -16,33 +16,33 @@
   />
   <script defer src="js/app.js"></script>
 </head>
-<body>
+<body style="cursor: default">
   <div class="msg-box">
     <div id="main-msg">Welcome to Gecko Blackjack!</div>
   </div>
   <div class="log"></div>
-  <button id="deal">Deal Next Hand</button>
+  <button id="deal" style="cursor: pointer">Deal Next Hand</button>
   <div id="dealer-hand">
     <h3>Gecko</h3>
-    <div id="d-card1" class=""></div>
-    <div id="d-card2" class=""></div>
+    <div id="d-card1" class="" style="cursor: default"></div>
+    <div id="d-card2" class="" style="cursor: default"></div>
   </div>
   <p id="d-card-value">(?)</p>
   <p id="p-card-value">(?)</p>
   <div id="player-hand">
     <h3>Player</h3>
     <div id="cards-p">
-      <div id="p-card1" class=""></div>
-      <div id="p-card2" class=""></div>
+      <div id="p-card1" class="" style="cursor: default"></div>
+      <div id="p-card2" class="" style="cursor: default"></div>
     </div>
   </div>
   <div id="deck">
     <h2>Deck</h2>
-    <div class="card large back shadow"></div>
+    <div class="card large back shadow" style="cursor: default"></div>
   </div>
   <div class="choices">
-    <button id="hit">Hit</button>
-    <button id="stand">Stand</button>
+    <button id="hit" style="cursor: pointer">Hit</button>
+    <button id="stand" style="cursor: pointer">Stand</button>
   </div>
   <div class="scoreboard">
     <h2 id="score">Score</h2>
@@ -50,6 +50,6 @@
     <p id="d-wins">Gecko: 0</p>
     <p id="pushes">Pushes: 0</p>
   </div>
-  <button id="light-dark"></button>
+  <button id="light-dark" style="cursor: pointer"></button>
 </body>
 </html>
