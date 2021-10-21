@@ -60,7 +60,7 @@ body.dark {
   grid-row: 3/4;
   text-align: left;
   margin-top: 0px;
-  margin-left: 35px;
+  margin-left: 0px;
   font-size: 25px;
 }
 
@@ -165,7 +165,8 @@ body.dark {
   grid-row: 4/5;
   height: 50px;
   width: 80px;
-  margin-left: 280px;
+  margin-top: 15px;
+  margin-left: 260px;
   border-radius: 20px;
   border: black;
   background-color: var(--background-btn);

@@ -286,11 +286,15 @@ function compareHands() {
 // the hand will end
 function checkBlackjack() {
   if(pHandValue === 21 && dHandValue === 21) {
+    dCard2.classList.remove('back')
+    displayDValue.innerText = dHandValue
     setTimeout(() => {mainMsg.innerText = "Double blackjack! Pushed."}, 1000)
     pushCount ++
     pushes.innerText = `Pushes: ${pushCount}`
   }
   else if(dHandValue === 21) {
+    dCard2.classList.remove('back')
+    displayDValue.innerText = dHandValue
     setTimeout(() => {mainMsg.innerText = "Blackjack! Dealer wins."}, 1000)
     dScore ++
     dWins.innerText = `Gecko: ${dScore}`
