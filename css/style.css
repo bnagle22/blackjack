@@ -1,19 +1,45 @@
+/* The Universal Selector */
+*, /* All elements*/
+*::before, /* All ::before pseudo-elements */
+*::after { /* All ::after pseudo-elements */
+  /* height & width will now include border & padding by default
+     but can be over-ridden as needed */
+  box-sizing: inherit;
+}
+
 body {
   display: grid;
   min-height: 100vh;
   grid-template-columns: 250px 350px 240px 180px;
-  grid-template-rows: 280px 130px 200px;
+  grid-template-rows: 290px 140px 210px;
   background-image: url("../images/sand2.jpg");
   font-family: 'Vollkorn', serif;
   font-weight: bold;
+  --box-color: 4px solid black;
+  --btn-color: 4px solid white;
+  --btn-content: "Dark Mode";
+  --background-btn: black;
+  --text-btn: white;
+}
+
+body.dark {
+  background-image: url("../images/sand5.jpg");
+  color: rgb(255, 255, 255);
+  border: white;
+  --box-color: 4px solid rgb(255, 255, 255);
+  --btn-color: 2px solid white;
+  --btn-content: "Light Mode";
+  --background-btn: white;
+  --text-btn: black;
 }
 
 .msg-box {
-  border: 4px solid black;
+  border: var(--box-color);
   border-radius: 10px;
   grid-column: 2/3;
   grid-row: 2/3;
-  margin: 25px 25px 0 0;
+  margin-top: 25px;
+  margin-left: 15px;
   width: 550px;
   height: 80px;
 }
@@ -25,19 +51,19 @@ body {
     margin-top: -8px;
     margin-right: 0px;
     content: url("../images/geckoBowtie.png");
-    object-fit: contain;
-    width: 500px;
+    object-fit: cover;
+    width: 400px;
     height: 450px; 
   }
 
 
 .scoreboard {
-  grid-column: 3/4;
+  grid-column: 4/5;
   grid-row: 3/4;
   text-align: left;
   margin-top: 0px;
-  margin-left: 75px;
-  font-size: 22px;
+  margin-left: 35px;
+  font-size: 25px;
 }
 
 #d-card-value {
@@ -50,7 +76,7 @@ body {
 #p-card-value {
   grid-column: 1/2;
   grid-row: 3/4;
-  margin: 15px 0 0 130px;
+  margin: 42px 0 0 130px;
   font-size: 20px;
 }
 
@@ -67,11 +93,6 @@ body {
 .move {
   animation: backInLeft;
   animation-duration: 1s;
-}
-
-.remove {
-  animation: backOutLeft;
-  animation-duration: .8s;
 }
 
 #deal {
@@ -99,13 +120,14 @@ body {
   grid-column: 1/4;
   grid-row: 3/4;
   margin-left: 30px;
+  margin-top: 25px;
 }
 
 #deck {
-  grid-column: 3/4;
+  grid-column: 4/5;
   grid-row: 1/2;
-  margin-top: 0px;
-  margin-left: 28px;
+  margin-top: -4px;
+  margin-left: -4px;
 }
 
 .choices {
@@ -138,4 +160,20 @@ body {
   margin: 5px;
   background-color: rgb(52, 52, 191);
   color: white;
+}
+
+#light-dark {
+  grid-column: 5/6;
+  grid-row: 4/5;
+  height: 50px;
+  width: 80px;
+  margin-left: 280px;
+  border-radius: 20px;
+  border: var(--btn-color);
+  background-color: var(--background-btn);
+  color: var(--text-btn);
+}
+
+#light-dark::after {
+  content: var(--btn-content);
 }

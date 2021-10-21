@@ -33,6 +33,8 @@ const pushes = document.getElementById('pushes')
 const dealBtn = document.getElementById('deal')
 const hitBtn = document.getElementById('hit')
 const standBtn = document.getElementById('stand')
+const lightDark = document.getElementById('light-dark')
+const body = document.querySelector("body")
 
 /*--------------------- Event Listeners -----------*/
 
@@ -40,7 +42,7 @@ dealBtn.addEventListener('click', init)
 hitBtn.addEventListener('click', hit)
 standBtn.addEventListener('click', stand)
 dealBtn.addEventListener('mouseover', function(evt) {
-  evt.target.style.backgroundColor = "rgb(254, 254, 217)"
+  evt.target.style.backgroundColor = "rgb(222, 223, 208)"
 })
 hitBtn.addEventListener('mouseover', function(evt) {
   evt.target.style.backgroundColor = "rgb(154, 18, 18)"
@@ -58,6 +60,7 @@ hitBtn.addEventListener('mouseout', function(evt) {
 standBtn.addEventListener('mouseout', function(evt) {
   evt.target.style.backgroundColor = ""
 })
+lightDark.addEventListener('click', toggleLightDark)
 /*--------------------- Functions -----------------*/
 
 
@@ -296,7 +299,9 @@ function renderPush() {
   pushes.innerText = `Pushes: ${pushCount}`
 }
 
-
+function toggleLightDark() {
+  body.className = body.className === "dark" ? "" : "dark"
+}
 
 /* Pseudocode
 
